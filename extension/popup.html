@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Browser Game Hub – Game Finder</title>
+    <link rel="stylesheet" href="popup.css">
+    <script type="module" src="popup.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <img src="icons/icon-48.png" width="30" height="30" alt="">
+        <span>Browser Game <strong>Hub</strong></span>
+      </div>
+      <a id="website" class="website" target="_blank" rel="noopener noreferrer">
+        <span data-message="website"></span><span aria-hidden="true">↗</span>
+      </a>
+    </header>
+    <main>
+      <section class="picker">
+        <div class="picker-copy">
+          <h1 data-message="title"></h1>
+          <p class="hint" data-message="rollHint"></p>
+        </div>
+        <button class="roll" id="roll" type="button">
+          <span class="die" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+          <span data-message="roll"></span>
+        </button>
+        <div class="picked" id="picked" hidden>
+          <strong id="picked-title" dir="auto"></strong>
+          <a id="picked-play" class="play" target="_blank" rel="noopener noreferrer">
+            <span data-message="play"></span><span aria-hidden="true">↗</span>
+          </a>
+        </div>
+        <p id="announcement" class="visually-hidden" role="status"></p>
+      </section>
+
+      <div class="filters">
+        <label for="search" class="visually-hidden" data-message="searchLabel"></label>
+        <input id="search" type="search" autocomplete="off" spellcheck="false">
+        <div class="filter-row">
+          <label for="category" class="visually-hidden" data-message="categoryLabel"></label>
+          <select id="category"><option value="" data-message="allCategories"></option></select>
+          <button class="favorites" id="favorites" type="button" aria-pressed="false">
+            <span aria-hidden="true">★</span><span data-message="favorites"></span>
+          </button>
+        </div>
+      </div>
+      <p class="count" id="count"></p>
+      <p class="empty" id="empty" hidden></p>
+      <ul class="games" id="games"></ul>
+    </main>
+
+    <template id="game-row">
+      <li class="game-row">
+        <a class="game-link" target="_blank" rel="noopener noreferrer">
+          <span class="category-mark" aria-hidden="true"></span>
+          <span class="game-text"><strong class="game-title" dir="auto"></strong><span class="game-category"></span></span>
+          <span class="arrow" aria-hidden="true">↗</span>
+        </a>
+        <button class="star" type="button" aria-pressed="false"><span aria-hidden="true">★</span></button>
+      </li>
+    </template>
+  </body>
+</html>
