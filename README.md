@@ -10,15 +10,15 @@ Find free browser games from the Chrome toolbar. Search the catalog, save your f
 
 | Find and save games | Roll the dice |
 | --- | --- |
-| <img src="docs/screenshots/game-finder.png" width="390" alt="The game finder popup with category, search, and favorites controls"> | <img src="docs/screenshots/dice-pick.png" width="390" alt="The popup displaying a game picked by the dice"> |
+| <img src="docs/screenshots/game-finder.png" width="390" alt="The game finder popup with category, search, and favorites controls"> | <img src="docs/screenshots/dice-pick.webp" width="390" alt="The popup displaying a game picked by the 3D dice"> |
 
 ## What it does
 
 - Search by title or filter racing, puzzle, sports, and arcade games inside the popup.
 - Star games to keep a favorites list in your browser.
-- Roll the dice to pick a game from the current results. Select **Play** to open its page on Browser Game Hub.
+- Roll the 3D dice to pick from the current results. The game opens after three seconds. You can pause the countdown, open the game immediately, or roll again.
 
-The extension requests no browser permissions. Finding, filtering, and saving games work locally. Game pages open on the website when you select a link. [Privacy details](PRIVACY.md)
+The extension requests no browser permissions. Finding, filtering, and saving games work locally. [Privacy details](PRIVACY.md)
 
 ## Install from GitHub
 

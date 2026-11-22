@@ -23,17 +23,10 @@
           <h1 data-message="title"></h1>
           <p class="hint" data-message="rollHint"></p>
         </div>
-        <button class="roll" id="roll" type="button">
+        <button class="roll" id="roll" type="button" aria-haspopup="dialog" aria-controls="dice-draw">
           <span class="die" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
           <span data-message="roll"></span>
         </button>
-        <div class="picked" id="picked" hidden>
-          <strong id="picked-title" dir="auto"></strong>
-          <a id="picked-play" class="play" target="_blank" rel="noopener noreferrer">
-            <span data-message="play"></span><span aria-hidden="true">↗</span>
-          </a>
-        </div>
-        <p id="announcement" class="visually-hidden" role="status"></p>
       </section>
 
       <div class="filters">
@@ -51,6 +44,44 @@
       <p class="empty" id="empty" hidden></p>
       <ul class="games" id="games"></ul>
     </main>
+
+    <dialog class="dice-draw" id="dice-draw" aria-labelledby="dice-title">
+      <div class="dice-inner">
+        <div class="dice-toolbar">
+          <button class="dice-control dice-sound" id="dice-sound" type="button" aria-pressed="true">
+            <span data-message="diceSound"></span>
+          </button>
+          <form method="dialog">
+            <button class="dice-control dice-close" autofocus>
+              <span aria-hidden="true">×</span><span class="visually-hidden" data-message="diceClose"></span>
+            </button>
+          </form>
+        </div>
+        <h2 id="dice-title" data-message="diceTitle"></h2>
+        <div class="dice-stage" aria-hidden="true">
+          <div class="dice-orbit" id="dice-orbit">
+            <div class="dice-camera">
+              <div class="dice-cube" id="dice-cube">
+                <div class="dice-face" data-pips="⚀"></div>
+                <div class="dice-face" data-pips="⚁"></div>
+                <div class="dice-face" data-pips="⚂"></div>
+                <div class="dice-face" data-pips="⚃"></div>
+                <div class="dice-face" data-pips="⚄"></div>
+                <div class="dice-face" data-pips="⚅"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="dice-result" id="dice-result" role="status" dir="auto"></p>
+        <div class="dice-actions">
+          <a class="dice-control dice-play" id="dice-play" target="_blank" rel="noopener noreferrer">
+            <span data-message="play"></span><span aria-hidden="true">↗</span>
+          </a>
+          <button class="dice-control" id="dice-reroll" type="button" data-message="diceAgain"></button>
+        </div>
+        <button class="dice-countdown" id="dice-countdown" type="button"></button>
+      </div>
+    </dialog>
 
     <template id="game-row">
       <li class="game-row">

@@ -6,7 +6,14 @@
   "title": { "message": "Find your next game" },
   "rollHint": { "message": "Roll for a pick from this list." },
   "roll": { "message": "Roll dice" },
-  "play": { "message": "Play" },
+  "play": { "message": "View game" },
+  "diceTitle": { "message": "Surprise me" },
+  "diceClose": { "message": "Close random draw" },
+  "diceSound": { "message": "Sound" },
+  "diceRolling": { "message": "Rolling…" },
+  "diceAgain": { "message": "Roll again" },
+  "diceCountdown": { "message": "Opening in $SECONDS$s · Pause", "placeholders": { "seconds": { "content": "$1" } } },
+  "diceResume": { "message": "Resume auto-open" },
   "searchLabel": { "message": "Search games" },
   "searchHint": { "message": "Search games…" },
   "categoryLabel": { "message": "Game category" },
@@ -20,6 +27,5 @@
   "oneGame": { "message": "1 game" },
   "gameCount": { "message": "$COUNT$ games", "placeholders": { "count": { "content": "$1" } } },
   "emptySearch": { "message": "No matching games. Try another search or category." },
-  "emptyFavorites": { "message": "Select a star next to a game to save it here." },
-  "picked": { "message": "The dice picked $GAME$.", "placeholders": { "game": { "content": "$1" } } }
+  "emptyFavorites": { "message": "Select a star next to a game to save it here." }
 }

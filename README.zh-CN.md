@@ -10,15 +10,15 @@
 
 | 查找和收藏游戏 | 掷骰子选游戏 |
 | --- | --- |
-| <img src="docs/screenshots/game-finder.png" width="390" alt="插件弹窗内的搜索、分类和收藏功能"> | <img src="docs/screenshots/dice-pick.png" width="390" alt="弹窗显示骰子选中的游戏"> |
+| <img src="docs/screenshots/game-finder.png" width="390" alt="插件弹窗内的搜索、分类和收藏功能"> | <img src="docs/screenshots/dice-pick.zh-CN.webp" width="390" alt="弹窗显示 3D 骰子选中的游戏"> |
 
 ## 主要功能
 
 - 在弹窗里按名称搜索，或筛选赛车、益智、体育和街机游戏。
 - 点击星标，把喜欢的游戏保存在当前浏览器中。
-- 掷骰子从当前结果里随机选一个游戏，点击「开始玩」进入 Browser Game Hub 对应页面。
+- 掷 3D 骰子从当前结果里随机选一款游戏，三秒后打开对应页面。你也可以暂停倒计时、立即查看游戏或再抽一次。
 
-插件不申请浏览器权限。查找、筛选和收藏在本地完成，点击游戏链接后才打开官网。 [隐私说明](PRIVACY.md)
+插件不申请浏览器权限。查找、筛选和收藏在本地完成。 [隐私说明](PRIVACY.md)
 
 ## 从 GitHub 安装
 

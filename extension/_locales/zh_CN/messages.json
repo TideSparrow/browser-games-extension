@@ -6,7 +6,14 @@
   "title": { "message": "找个游戏玩" },
   "rollHint": { "message": "掷骰子，从当前列表随机选一个。" },
   "roll": { "message": "掷骰子" },
-  "play": { "message": "开始玩" },
+  "play": { "message": "查看游戏" },
+  "diceTitle": { "message": "随机抽一款" },
+  "diceClose": { "message": "关闭随机抽选" },
+  "diceSound": { "message": "音效" },
+  "diceRolling": { "message": "正在掷骰子…" },
+  "diceAgain": { "message": "再抽一次" },
+  "diceCountdown": { "message": "$SECONDS$ 秒后自动跳转 · 暂停", "placeholders": { "seconds": { "content": "$1" } } },
+  "diceResume": { "message": "继续自动跳转" },
   "searchLabel": { "message": "搜索游戏" },
   "searchHint": { "message": "搜索游戏…" },
   "categoryLabel": { "message": "游戏分类" },
@@ -20,6 +27,5 @@
   "oneGame": { "message": "1 款游戏" },
   "gameCount": { "message": "$COUNT$ 款游戏", "placeholders": { "count": { "content": "$1" } } },
   "emptySearch": { "message": "没有匹配的游戏，试试换个关键词或分类。" },
-  "emptyFavorites": { "message": "点击游戏旁边的星标，就能在这里找到它。" },
-  "picked": { "message": "骰子选中了 $GAME$。", "placeholders": { "game": { "content": "$1" } } }
+  "emptyFavorites": { "message": "点击游戏旁边的星标，就能在这里找到它。" }
 }

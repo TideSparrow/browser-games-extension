@@ -1,4 +1,5 @@
-import { categories, filterGames, pickGame, siteLink } from './games.js';
+import { categories, filterGames, siteLink } from './games.js';
+import { initDiceDraw } from './dice.js';
 
 const message = (key, substitutions) => chrome.i18n.getMessage(key, substitutions);
 const storageKey = 'favorites';
@@ -14,16 +15,10 @@ const search = document.querySelector('#search');
 const category = document.querySelector('#category');
 const favoritesButton = document.querySelector('#favorites');
 const roll = document.querySelector('#roll');
-const die = roll.querySelector('.die');
-const picked = document.querySelector('#picked');
-const pickedTitle = document.querySelector('#picked-title');
-const pickedPlay = document.querySelector('#picked-play');
-const announcement = document.querySelector('#announcement');
 const gameList = document.querySelector('#games');
 const rowTemplate = document.querySelector('#game-row');
 const count = document.querySelector('#count');
 const empty = document.querySelector('#empty');
-const motionAllowed = matchMedia('(prefers-reduced-motion: no-preference)');
 
 website.href = siteLink('', 'website');
 search.placeholder = message('searchHint');
@@ -38,9 +33,7 @@ try {
 }
 
 let showingFavorites = false;
-let rolling = false;
 let results = [];
-let selected;
 
 const marks = { racing: '↗', puzzle: '◆', sports: '●', arcade: '✦' };
 
@@ -85,12 +78,7 @@ function render() {
   count.textContent = results.length === 1 ? message('oneGame') : message('gameCount', String(results.length));
   empty.hidden = results.length > 0;
   empty.textContent = message(showingFavorites && favorites.size === 0 ? 'emptyFavorites' : 'emptySearch');
-  roll.setAttribute('aria-disabled', String(rolling || results.length === 0));
-
-  if (selected && !results.some(({ slug }) => slug === selected.slug)) {
-    picked.hidden = true;
-    announcement.textContent = '';
-  }
+  roll.setAttribute('aria-disabled', String(results.length === 0));
 }
 
 search.addEventListener('input', render);
@@ -101,32 +89,6 @@ favoritesButton.addEventListener('click', () => {
   render();
 });
 
-roll.addEventListener('click', async () => {
-  if (rolling || results.length === 0) return;
-  rolling = true;
-  roll.setAttribute('aria-disabled', 'true');
-  try {
-    if (motionAllowed.matches) {
-      await die.animate([
-        { transform: 'translateY(0) rotate(-10deg)' },
-        { transform: 'translateY(-9px) rotate(190deg)', offset: 0.54 },
-        { transform: 'translateY(1px) rotate(352deg)', offset: 0.88 },
-        { transform: 'translateY(0) rotate(350deg)' },
-      ], { duration: 420, easing: 'cubic-bezier(.2,.7,.3,1)' }).finished;
-    }
-
-    const game = pickGame(results, selected?.slug);
-    if (game) {
-      selected = game;
-      pickedTitle.textContent = game.title;
-      pickedPlay.href = siteLink(game.slug, 'dice');
-      picked.hidden = false;
-      announcement.textContent = message('picked', game.title);
-    }
-  } finally {
-    rolling = false;
-    roll.setAttribute('aria-disabled', String(results.length === 0));
-  }
-});
+initDiceDraw(roll, () => results, message);
 
 render();
