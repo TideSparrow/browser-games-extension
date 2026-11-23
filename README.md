@@ -16,6 +16,7 @@ Find free browser games from the Chrome, Edge, Brave, or Firefox toolbar. Search
 
 - Search the full Browser Game Hub catalog by title, aliases, or tags and filter by category.
 - Star games to keep a favorites list in your browser.
+- The popup follows your browser language. Use the language menu in the toolbar popup to choose from 12 languages. Unsupported browser languages fall back to English.
 - Roll the 3D dice to pick from the current results. The game opens after three seconds. You can pause the countdown, open the game immediately, or roll again.
 
 The extension requests no browser permissions. It refreshes the public game catalog as needed and keeps a local copy for offline search. [Privacy details](PRIVACY.md)

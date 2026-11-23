@@ -1,8 +1,9 @@
 import assert from 'node:assert/strict';
-import { readFile } from 'node:fs/promises';
+import { readFile, readdir } from 'node:fs/promises';
 import test from 'node:test';
 import { loadCatalog, parseCatalog, refreshCatalog } from '../extension/catalog.js';
 import { categories, filterGames, games, pickGame, siteLink } from '../extension/games.js';
+import { formatMessage } from '../extension/i18n.js';
 
 test('catalog slugs are unique and belong to known categories', () => {
   assert.equal(new Set(games.map(({ slug }) => slug)).size, games.length);
@@ -97,7 +98,32 @@ test('manifest requests no extension permissions and popup translations match', 
   assert.equal(manifest.permissions, undefined);
   assert.equal(manifest.host_permissions, undefined);
   assert.equal(manifest.content_scripts, undefined);
-  const en = await load('_locales/en/messages.json');
-  const zh = await load('_locales/zh_CN/messages.json');
-  assert.deepEqual(Object.keys(en).sort(), Object.keys(zh).sort());
+
+  const popup = await readFile(new URL('../extension/popup.html', import.meta.url), 'utf8');
+  const select = popup.match(/<select id="language"[^>]*>([\s\S]*?)<\/select>/)[1];
+  const options = [...select.matchAll(/<option value="([^"]+)" lang="([^"]+)">/g)];
+  const catalogs = await readdir(new URL('../extension/_locales/', import.meta.url));
+  assert.equal(manifest.default_locale, 'en');
+  assert.deepEqual(
+    options.map(([, locale]) => locale).sort(),
+    catalogs.sort(),
+  );
+
+  const english = await load('_locales/en/messages.json');
+  for (const [, locale, language] of options) {
+    const messages = await load(`_locales/${locale}/messages.json`);
+    assert.deepEqual(Object.keys(messages).sort(), Object.keys(english).sort(), locale);
+    assert.equal(messages.documentLanguage.message, language);
+    assert.ok(messages.appDescription.message.length <= 132, locale);
+    for (const [key, entry] of Object.entries(messages)) {
+      assert.ok(entry.message.trim(), `${locale}.${key}`);
+      assert.deepEqual(entry.placeholders, english[key].placeholders, `${locale}.${key}`);
+      if (entry.placeholders) {
+        const substitution = 'Example $1';
+        const formatted = formatMessage(entry, substitution);
+        assert.ok(formatted.includes(substitution), `${locale}.${key}`);
+        assert.doesNotMatch(formatted, /\$[A-Z_]+\$/i, `${locale}.${key}`);
+      }
+    }
+  }
 });

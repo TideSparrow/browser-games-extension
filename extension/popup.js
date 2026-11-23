@@ -1,15 +1,16 @@
 import { filterGames, siteLink } from './games.js';
 import { loadCatalog, refreshCatalog } from './catalog.js';
 import { initDiceDraw } from './dice.js';
+import { formatMessage, loadMessages } from './i18n.js';
 
-const message = (key, substitutions) => chrome.i18n.getMessage(key, substitutions);
 const storageKey = 'favorites';
-
-document.documentElement.lang = message('documentLanguage');
-document.title = message('appName');
-for (const element of document.querySelectorAll('[data-message]')) {
-  element.textContent = message(element.dataset.message);
-}
+const languageKey = 'popup-language';
+const language = document.querySelector('#language');
+const translatedElements = document.querySelectorAll('[data-message]');
+let translations;
+let selectedLanguage = '';
+const message = (key, substitution) =>
+  formatMessage(translations?.[key], substitution) ?? chrome.i18n.getMessage(key, substitution);
 
 const website = document.querySelector('#website');
 const search = document.querySelector('#search');
@@ -24,7 +25,6 @@ const more = document.querySelector('#more');
 const batchSize = 20;
 
 website.href = siteLink('', 'website');
-search.placeholder = message('searchHint');
 
 let favorites = new Set();
 try {
@@ -48,6 +48,17 @@ function updateCategories() {
   values.sort((a, b) => categoryName(a).localeCompare(categoryName(b), document.documentElement.lang));
   for (const value of values) category.add(new Option(categoryName(value), value));
   if (values.includes(selected)) category.value = selected;
+}
+
+function updateLanguage() {
+  document.documentElement.lang = message('documentLanguage');
+  document.title = message('appName');
+  for (const element of translatedElements) {
+    element.textContent = message(element.dataset.message);
+  }
+  search.placeholder = message('searchHint');
+  updateCategories();
+  render(Math.max(batchSize, gameList.children.length), gameList.scrollTop);
 }
 
 function setFavoriteState(button, game) {
@@ -129,8 +140,37 @@ favoritesButton.addEventListener('click', () => {
 
 initDiceDraw(roll, () => results, message);
 
-updateCategories();
-render();
+try {
+  language.value = localStorage.getItem(languageKey) ?? '';
+  if (language.value) {
+    translations = await loadMessages(language.value);
+    selectedLanguage = language.value;
+  }
+} catch {
+  // Fall back to the browser language if the saved choice cannot be loaded.
+}
+language.value = selectedLanguage;
+updateLanguage();
+language.addEventListener('change', async () => {
+  const requested = language.value;
+  let messages;
+  try {
+    messages = requested ? await loadMessages(requested) : undefined;
+  } catch {
+    if (language.value === requested) language.value = selectedLanguage;
+    return;
+  }
+  if (language.value !== requested) return;
+  translations = messages;
+  selectedLanguage = requested;
+  updateLanguage();
+  try {
+    localStorage.setItem(languageKey, selectedLanguage);
+  } catch {
+    // The current popup can still use the selected language.
+  }
+});
+
 refreshCatalog(localStorage).then((updated) => {
   if (!updated) return;
   const focused = document.activeElement;

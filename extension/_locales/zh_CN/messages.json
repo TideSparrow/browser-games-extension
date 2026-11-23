@@ -2,6 +2,8 @@
   "appName": { "message": "Browser Game Hub 游戏查找器" },
   "documentLanguage": { "message": "zh-CN" },
   "appDescription": { "message": "查找免费浏览器游戏、收藏喜欢的游戏，或掷骰子随机选一个。" },
+  "languageLabel": { "message": "界面语言" },
+  "languageAuto": { "message": "自动" },
   "website": { "message": "官网" },
   "title": { "message": "找个游戏玩" },
   "rollHint": { "message": "掷骰子，从当前列表随机选一个。" },

@@ -2,6 +2,8 @@
   "appName": { "message": "Browser Game Hub – Game Finder" },
   "documentLanguage": { "message": "en" },
   "appDescription": { "message": "Find free browser games, save your favorites, and roll the dice to pick what to play next." },
+  "languageLabel": { "message": "Interface language" },
+  "languageAuto": { "message": "Automatic" },
   "website": { "message": "Website" },
   "title": { "message": "Find your next game" },
   "rollHint": { "message": "Roll for a pick from this list." },

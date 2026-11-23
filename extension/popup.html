@@ -13,9 +13,27 @@
         <img src="icons/icon-48.png" width="30" height="30" alt="">
         <span>Browser Game <strong>Hub</strong></span>
       </div>
-      <a id="website" class="website" target="_blank" rel="noopener noreferrer">
-        <span data-message="website"></span><span aria-hidden="true">↗</span>
-      </a>
+      <div class="topbar-actions">
+        <a id="website" class="website" target="_blank" rel="noopener noreferrer">
+          <span data-message="website"></span><span aria-hidden="true">↗</span>
+        </a>
+        <label for="language" class="visually-hidden" data-message="languageLabel"></label>
+        <select id="language" class="language">
+          <option value="" data-message="languageAuto"></option>
+          <option value="en" lang="en">English</option>
+          <option value="zh_CN" lang="zh-CN">简体中文</option>
+          <option value="zh_TW" lang="zh-TW">繁體中文</option>
+          <option value="ja" lang="ja">日本語</option>
+          <option value="ko" lang="ko">한국어</option>
+          <option value="es" lang="es">Español</option>
+          <option value="pt_BR" lang="pt-BR">Português (BR)</option>
+          <option value="fr" lang="fr">Français</option>
+          <option value="de" lang="de">Deutsch</option>
+          <option value="ru" lang="ru">Русский</option>
+          <option value="id" lang="id">Indonesia</option>
+          <option value="vi" lang="vi">Tiếng Việt</option>
+        </select>
+      </div>
     </header>
     <main>
       <section class="picker">
