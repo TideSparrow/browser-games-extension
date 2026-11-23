@@ -23,10 +23,11 @@ jobs:
       - run: npm run check
       - run: npm run package
       - run: unzip -tq dist/browser-games-extension.zip
+      - run: unzip -tq dist/browser-games-extension-firefox.zip
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: browser-games-extension
-          path: dist/browser-games-extension.zip
+          path: dist/browser-games-extension*.zip
           if-no-files-found: error
 
   release:
@@ -46,4 +47,5 @@ jobs:
         run: |
           version=$(unzip -p browser-games-extension.zip manifest.json | jq -r '.version')
           test "$GITHUB_REF_NAME" = "v$version"
-          gh release create "$GITHUB_REF_NAME" browser-games-extension.zip --verify-tag --title "Browser Game Hub – Game Finder $GITHUB_REF_NAME" --generate-notes
+          test "$(unzip -p browser-games-extension-firefox.zip manifest.json | jq -r '.version')" = "$version"
+          gh release create "$GITHUB_REF_NAME" browser-games-extension.zip browser-games-extension-firefox.zip --verify-tag --title "Browser Game Hub – Game Finder $GITHUB_REF_NAME" --generate-notes

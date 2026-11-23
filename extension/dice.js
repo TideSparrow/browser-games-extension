@@ -128,10 +128,13 @@ export function initDiceDraw(trigger, getResults, message) {
       const image = new Image();
       image.alt = '';
       image.draggable = false;
-      image.src = `covers/${game.slug}.webp`;
+      image.referrerPolicy = 'no-referrer';
+      image.addEventListener('error', () => image.remove(), { once: true });
+      if (game.cover || !game.path) image.src = game.cover || `covers/${game.slug}.webp`;
       const name = document.createElement('span');
       name.textContent = game.title;
-      face.append(image, name);
+      if (image.hasAttribute('src')) face.append(image);
+      face.append(name);
     }
 
     const from = rotation(...angle);
@@ -144,7 +147,7 @@ export function initDiceDraw(trigger, getResults, message) {
       previous = winner.slug;
       faces[winnerIndex].setAttribute('data-winner', '');
       result.textContent = winner.title;
-      play.href = siteLink(winner.slug, 'dice');
+      play.href = siteLink(winner.slug, 'dice', winner.path);
       dialog.removeAttribute('data-rolling');
       reroll.removeAttribute('aria-disabled');
       playNotes([[0, 180, 58, .13, .26], [.035, 523, 515, .135, .15, 'sine'], [.11, 784, 770, .18, .12, 'sine']]);

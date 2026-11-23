@@ -4,6 +4,6 @@
   "type": "module",
   "scripts": {
     "check": "node --test",
-    "package": "mkdir -p dist && rm -f dist/browser-games-extension.zip && cd extension && zip -q -r -X ../dist/browser-games-extension.zip . -x '*/.DS_Store' '.DS_Store'"
+    "package": "node scripts/package.mjs"
   }
 }

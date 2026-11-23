@@ -2,7 +2,7 @@
 
 **English** · [简体中文](README.zh-CN.md)
 
-Find free browser games from the Chrome toolbar. Search the catalog, save your favorites, or roll the dice to pick what to play next.
+Find free browser games from the Chrome, Edge, Brave, or Firefox toolbar. Search the catalog, save your favorites, or roll the dice to pick what to play next.
 
 [Website][website] · [Download ZIP][releases] · [Report an issue][issues] · [Buy us a coffee][coffee]
 
@@ -14,20 +14,26 @@ Find free browser games from the Chrome toolbar. Search the catalog, save your f
 
 ## What it does
 
-- Search by title or filter racing, puzzle, sports, and arcade games inside the popup.
+- Search the full Browser Game Hub catalog by title, aliases, or tags and filter by category.
 - Star games to keep a favorites list in your browser.
 - Roll the 3D dice to pick from the current results. The game opens after three seconds. You can pause the countdown, open the game immediately, or roll again.
 
-The extension requests no browser permissions. Finding, filtering, and saving games work locally. [Privacy details](PRIVACY.md)
+The extension requests no browser permissions. It refreshes the public game catalog as needed and keeps a local copy for offline search. [Privacy details](PRIVACY.md)
 
 ## Install from GitHub
 
-1. Download and unzip the [latest release][releases].
-2. Open `chrome://extensions` and turn on **Developer mode**.
-3. Select **Load unpacked** and choose the extracted folder containing `manifest.json`.
-4. Open Browser Game Hub from Chrome's Extensions menu. Pin it to keep the dice one click away.
+### Chrome, Edge, and Brave
 
-For development, load the `extension/` directory directly. Run `npm run check` to test catalog behavior and package rules. Run `npm run package` on macOS or Linux to create the distribution ZIP in `dist/`.
+1. Download and unzip `browser-games-extension.zip` from the [latest release][releases].
+2. Open `chrome://extensions`, `edge://extensions`, or `brave://extensions` and turn on **Developer mode**.
+3. Select **Load unpacked** and choose the extracted folder containing `manifest.json`.
+4. Open Browser Game Hub from the browser's Extensions menu.
+
+### Firefox
+
+Download `browser-games-extension-firefox.zip` from the [latest release][releases]. In desktop Firefox 142 or later, open `about:debugging#/runtime/this-firefox`, choose **Load Temporary Add-on**, and select the ZIP. The temporary add-on is removed when Firefox restarts. Permanent installation requires Mozilla signing.
+
+For Chromium development, load the `extension/` directory directly. Run `npm run check` to test catalog behavior and package rules. Run `npm run package` on macOS or Linux to build both ZIPs in `dist/`.
 
 The extension source uses the [MIT License](LICENSE). Browser Game Hub branding and online games are subject to their own rights and terms.
 

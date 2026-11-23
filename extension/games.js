@@ -19,13 +19,13 @@ export const games = [
   { slug: 'mini-tennis-3d', title: 'Mini Tennis 3D', category: 'sports', tags: 'racket' },
 ];
 
-export function filterGames(query, category, favorites, categoryLabel = (value) => value) {
-  const words = query.trim().toLowerCase().split(/\s+/u);
+export function filterGames(query, category, favorites, categoryLabel = (value) => value, catalog = games) {
+  const words = query.normalize('NFKC').trim().toLowerCase().split(/\s+/u);
 
-  return games.filter((game) => {
+  return catalog.filter((game) => {
     if (category && game.category !== category) return false;
     if (favorites && !favorites.has(game.slug)) return false;
-    const searchable = [game.title, game.category, categoryLabel(game.category), game.tags].join(' ').toLowerCase();
+    const searchable = [game.title, game.slug.replaceAll('-', ' '), game.category, categoryLabel(game.category), game.keywords ?? game.tags].join(' ').normalize('NFKC').toLowerCase();
     return words.every((word) => searchable.includes(word));
   });
 }
@@ -36,8 +36,7 @@ export function pickGame(choices, previousSlug, random = Math.random) {
   return pool[Math.floor(random() * pool.length)];
 }
 
-export function siteLink(slug, placement) {
-  const path = slug ? `/games/${encodeURIComponent(slug)}` : '/';
+export function siteLink(slug, placement, path = slug ? `/games/${encodeURIComponent(slug)}` : '/') {
   const url = new URL(path, 'https://browsergamehub.net');
   url.searchParams.set('utm_source', 'chrome-extension');
   url.searchParams.set('utm_medium', 'referral');
