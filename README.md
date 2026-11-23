@@ -24,14 +24,26 @@ The extension requests no browser permissions. It refreshes the public game cata
 
 ### Chrome, Edge, and Brave
 
-1. Download and unzip `browser-games-extension.zip` from the [latest release][releases].
-2. Open `chrome://extensions`, `edge://extensions`, or `brave://extensions` and turn on **Developer mode**.
-3. Select **Load unpacked** and choose the extracted folder containing `manifest.json`.
-4. Open Browser Game Hub from the browser's Extensions menu.
+All three browsers use the same [`browser-games-extension.zip`][chromium-zip]. Chrome users can also install it from the [Chrome Web Store][chrome-store].
+
+| Browser | Extensions page |
+| --- | --- |
+| Chrome | `chrome://extensions` |
+| Edge | `edge://extensions` |
+| Brave | `brave://extensions` |
+
+1. Download and extract the ZIP.
+2. Open your browser's extensions page and turn on **Developer mode**.
+3. Click **Load unpacked** and select the folder that contains `manifest.json`.
+4. Open Browser Game Hub from the Extensions menu.
 
 ### Firefox
 
-Download `browser-games-extension-firefox.zip` from the [latest release][releases]. In desktop Firefox 142 or later, open `about:debugging#/runtime/this-firefox`, choose **Load Temporary Add-on**, and select the ZIP. The temporary add-on is removed when Firefox restarts. Permanent installation requires Mozilla signing.
+1. Download [`browser-games-extension-firefox.zip`][firefox-zip].
+2. In desktop Firefox 142 or later, open `about:debugging#/runtime/this-firefox`.
+3. Click **Load Temporary Add-on** and select the ZIP directly.
+
+Firefox removes the temporary add-on when it restarts. Permanent installation requires Mozilla signing.
 
 For Chromium development, load the `extension/` directory directly. Run `npm run check` to test catalog behavior and package rules. Run `npm run package` on macOS or Linux to build both ZIPs in `dist/`.
 
@@ -39,5 +51,8 @@ The extension source uses the [MIT License](LICENSE). Browser Game Hub branding 
 
 [website]: https://browsergamehub.net/?utm_source=github&utm_medium=referral&utm_campaign=browser-games-extension-readme
 [releases]: https://github.com/TideSparrow/browser-games-extension/releases/latest
+[chromium-zip]: https://github.com/TideSparrow/browser-games-extension/releases/latest/download/browser-games-extension.zip
+[firefox-zip]: https://github.com/TideSparrow/browser-games-extension/releases/latest/download/browser-games-extension-firefox.zip
+[chrome-store]: https://chromewebstore.google.com/detail/bgmhfpfhhefjickkagdbopbngbgiojeb
 [issues]: https://github.com/TideSparrow/browser-games-extension/issues
 [coffee]: https://buymeacoffee.com/marklongpcm

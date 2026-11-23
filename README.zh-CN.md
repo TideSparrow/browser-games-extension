@@ -24,14 +24,26 @@
 
 ### Chrome、Edge 和 Brave
 
-1. 从 [最新版本][releases] 下载并解压 `browser-games-extension.zip`。
-2. 打开 `chrome://extensions`、`edge://extensions` 或 `brave://extensions`，开启「开发者模式」。
-3. 选择「加载已解压的扩展程序」，选中包含 `manifest.json` 的解压目录。
+三个浏览器共用 [`browser-games-extension.zip`][chromium-zip]。Chrome 用户也可以从 [Chrome 应用商店][chrome-store] 安装。
+
+| 浏览器 | 扩展管理页 |
+| --- | --- |
+| Chrome | `chrome://extensions` |
+| Edge | `edge://extensions` |
+| Brave | `brave://extensions` |
+
+1. 下载并解压 ZIP。
+2. 打开对应的扩展管理页，开启「开发者模式」。
+3. 点击「加载已解压的扩展程序」，选择包含 `manifest.json` 的目录。
 4. 在浏览器的扩展程序菜单中打开 Browser Game Hub。
 
 ### Firefox
 
-从 [最新版本][releases] 下载 `browser-games-extension-firefox.zip`。在桌面版 Firefox 142 或更高版本打开 `about:debugging#/runtime/this-firefox`，选择「临时载入附加组件」，然后选中 ZIP。重启 Firefox 后临时扩展会被移除。长期安装需要 Mozilla 签名。
+1. 下载 [`browser-games-extension-firefox.zip`][firefox-zip]。
+2. 在桌面版 Firefox 142 或更高版本打开 `about:debugging#/runtime/this-firefox`。
+3. 点击「临时载入附加组件」，直接选择 ZIP 文件。
+
+重启 Firefox 后，临时扩展会被移除。长期安装需要 Mozilla 签名。
 
 Chromium 开发时可以直接加载仓库中的 `extension/` 目录。运行 `npm run check` 检查游戏目录和打包规则。在 macOS 或 Linux 上运行 `npm run package`，两个 ZIP 都会生成在 `dist/`。
 
@@ -39,5 +51,8 @@ Chromium 开发时可以直接加载仓库中的 `extension/` 目录。运行 `n
 
 [website]: https://browsergamehub.net/?utm_source=github&utm_medium=referral&utm_campaign=browser-games-extension-readme
 [releases]: https://github.com/TideSparrow/browser-games-extension/releases/latest
+[chromium-zip]: https://github.com/TideSparrow/browser-games-extension/releases/latest/download/browser-games-extension.zip
+[firefox-zip]: https://github.com/TideSparrow/browser-games-extension/releases/latest/download/browser-games-extension-firefox.zip
+[chrome-store]: https://chromewebstore.google.com/detail/bgmhfpfhhefjickkagdbopbngbgiojeb
 [issues]: https://github.com/TideSparrow/browser-games-extension/issues
 [coffee]: https://buymeacoffee.com/marklongpcm
